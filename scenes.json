@@ -5,12 +5,16 @@
     "initial": "L",
     "language": "English",
     "website": "loadstar.online",
-    "audience": "People in the US who want to run their own game-credit business as an agent: load credits for their players, take payments by link, track every dollar."
+    "audience": "People in the US who want to run their own game-credit business as an agent: load credits for their players, take payments by link, track every dollar.",
+    "voice": {
+      "engine": "kokoro",
+      "name": "bm_fable"
+    }
   },
   "scenes": [
     {
       "id": "hook",
-      "duration": 3.75,
+      "duration": 3.9,
       "voice": "What if you could run your own credit business?",
       "tag": {
         "icon": "?",
@@ -35,11 +39,11 @@
         }
       ],
       "badge": "🔔 12 unread",
-      "audio": "output/voice/hook-ff37f1dc80.mp3"
+      "audio": "output/voice/hook-5f9e7fc4a7.wav"
     },
     {
       "id": "problem",
-      "duration": 4.32,
+      "duration": 5.17,
       "voice": "Doing it by hand means mistakes, delays, and lost money.",
       "tag": {
         "icon": "!",
@@ -67,11 +71,11 @@
         }
       ],
       "lost": "That's {total} gone every week",
-      "audio": "output/voice/problem-308668b859.mp3"
+      "audio": "output/voice/problem-e079f3cd95.wav"
     },
     {
       "id": "dashboard",
-      "duration": 10.48,
+      "duration": 9.95,
       "voice": "Loadstar puts every game in one dashboard. Pick Alex, choose fifty credits, tap load. The wallet updates instantly, Alex gets paid in seconds.",
       "tag": {
         "icon": "★",
@@ -108,11 +112,11 @@
         "credits": 50,
         "price": 0.25
       },
-      "audio": "output/voice/dashboard-e2a0176dab.mp3"
+      "audio": "output/voice/dashboard-e30d6bc0f4.wav"
     },
     {
       "id": "paylink",
-      "duration": 6.75,
+      "duration": 7.55,
       "voice": "Need a quick payment? Send Maria a pay link. She pays, and her credits load automatically, no chasing.",
       "tag": {
         "icon": "⚡",
@@ -126,11 +130,11 @@
       "game": "Neon Drift",
       "amount": 20,
       "credits": 80,
-      "audio": "output/voice/paylink-07dc63b609.mp3"
+      "audio": "output/voice/paylink-a3c0c2d950.wav"
     },
     {
       "id": "results",
-      "duration": 3.76,
+      "duration": 4.42,
       "voice": "More loads every day, zero extra work.",
       "tag": {
         "icon": "↑",
@@ -161,15 +165,15 @@
         "Fri",
         "Today"
       ],
-      "audio": "output/voice/results-756c24ab8b.mp3"
+      "audio": "output/voice/results-3c99447c71.wav"
     },
     {
       "id": "end",
-      "duration": 4.72,
+      "duration": 5.15,
       "voice": "Loadstar. Become an agent today at loadstar dot online.",
       "tagline": "Run your own credit business",
       "cta": "Become an agent →",
-      "audio": "output/voice/end-73611d5970.mp3"
+      "audio": "output/voice/end-532cab2061.wav"
     }
   ]
 }

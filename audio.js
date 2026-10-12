@@ -1,4 +1,6 @@
-// usage: node audio.js voice                 -> one MP3 per scene (ElevenLabs), scene durations set from them
+// usage: node audio.js voice                 -> one voice file per scene, scene durations set from them
+//                                                engine from scenes.json brand.voice {engine, name}: "kokoro" (free, on this Mac)
+//                                                or "elevenlabs" (default; ELEVENLABS_* in .env)
 //        node audio.js mix silent.mp4 out.mp4 -> adds the voice + music.mp3 (if present, ~15% volume) to the video
 const { execFileSync } = require('child_process');
 const crypto = require('crypto');
@@ -24,7 +26,7 @@ function loadEnv() {
 }
 const seconds = file => +execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file]).toString();
 
-async function tts(text, voiceId, model, out) {
+async function elevenlabs(text, voiceId, model, out) {
   const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_44100_128`, {
     method: 'POST',
     headers: { 'xi-api-key': process.env.ELEVENLABS_API_KEY, 'Content-Type': 'application/json' },
@@ -34,19 +36,35 @@ async function tts(text, voiceId, model, out) {
   fs.writeFileSync(out, Buffer.from(await res.arrayBuffer()));
 }
 
+// Kokoro runs on this Mac (model is downloaded once, then cached)
+let kokoroModel;
+async function kokoro(text, name, out) {
+  if (!kokoroModel) {
+    const { KokoroTTS } = await import('kokoro-js');
+    kokoroModel = await KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX', { dtype: 'q8', device: 'cpu' });
+  }
+  await (await kokoroModel.generate(text, { voice: name })).save(out);
+}
+
 async function voice() {
   loadEnv();
-  const { ELEVENLABS_API_KEY: key, ELEVENLABS_VOICE_ID: voiceId, ELEVENLABS_MODEL: model = 'eleven_v3' } = process.env;
-  if (!key || !voiceId) throw new Error('Set ELEVENLABS_API_KEY and ELEVENLABS_VOICE_ID in .env');
   const S = JSON.parse(fs.readFileSync(SCENES, 'utf8'));
+  const v = (S.brand && S.brand.voice) || {};
+  const engine = v.engine || 'elevenlabs';
+  const name = engine === 'kokoro' ? v.name || 'am_michael' : v.name || process.env.ELEVENLABS_VOICE_ID;
+  const model = engine === 'kokoro' ? 'q8' : v.model || process.env.ELEVENLABS_MODEL || 'eleven_v3';
+  if (engine === 'elevenlabs' && !(process.env.ELEVENLABS_API_KEY && name)) throw new Error('Set ELEVENLABS_API_KEY and ELEVENLABS_VOICE_ID in .env');
+  console.log(`  voice: ${engine} ${name} (${model})`);
   fs.mkdirSync(VOICE_DIR, { recursive: true });
   for (const s of S.scenes) {
     if (!s.voice || !s.voice.trim()) { delete s.audio; continue; }
-    // same text + voice + model = reuse the old MP3 (saves ElevenLabs credits)
-    const hash = crypto.createHash('sha1').update([s.voice, voiceId, model].join('|')).digest('hex').slice(0, 10);
-    const file = path.join(VOICE_DIR, `${s.id}-${hash}.mp3`);
+    // same text + voice + model = reuse the old file (saves ElevenLabs credits / time)
+    const key = engine === 'kokoro' ? [s.voice, 'kokoro', name, model] : [s.voice, name, model];
+    const hash = crypto.createHash('sha1').update(key.join('|')).digest('hex').slice(0, 10);
+    const file = path.join(VOICE_DIR, `${s.id}-${hash}.${engine === 'kokoro' ? 'wav' : 'mp3'}`);
     if (fs.existsSync(file)) console.log(`  ${s.id}: reusing saved voice`);
-    else { console.log(`  ${s.id}: ElevenLabs...`); await tts(s.voice, voiceId, model, file); }
+    else if (engine === 'kokoro') { console.log(`  ${s.id}: Kokoro...`); await kokoro(s.voice, name, file); }
+    else { console.log(`  ${s.id}: ElevenLabs...`); await elevenlabs(s.voice, name, model, file); }
     const len = seconds(file);
     s.audio = path.relative(ROOT, file);
     s.duration = +Math.max(LEAD + len + TAIL, minLength(S, s.id)).toFixed(2);

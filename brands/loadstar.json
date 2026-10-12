@@ -10,5 +10,9 @@
     "Never name real games, game apps or game companies. Use invented game names only.",
     "No gambling words or promises: no bet, win, jackpot, casino, slots, payout, cash out, odds, get rich.",
     "Prices and money in US dollars. Casual, confident American English. Short sentences."
-  ]
+  ],
+  "voice": {
+    "engine": "kokoro",
+    "name": "bm_fable"
+  }
 }
