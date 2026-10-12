@@ -1,0 +1,175 @@
+{
+  "template": "loadstar",
+  "brand": {
+    "name": "Loadstar",
+    "initial": "L",
+    "language": "English",
+    "website": "loadstar.online",
+    "audience": "People in the US who want to run their own game-credit business as an agent: load credits for their players, take payments by link, track every dollar."
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "duration": 3.75,
+      "voice": "What if you could run your own credit business?",
+      "tag": {
+        "icon": "?",
+        "text": "Agents"
+      },
+      "headline": [
+        "Start your",
+        "*own* *business*"
+      ],
+      "messages": [
+        {
+          "name": "Liam",
+          "text": "need 50 on Star Vault now"
+        },
+        {
+          "name": "Sara",
+          "text": "still waiting for credits"
+        },
+        {
+          "name": "Diego",
+          "text": "credits never came??"
+        }
+      ],
+      "badge": "🔔 12 unread",
+      "audio": "output/voice/hook-ff37f1dc80.mp3"
+    },
+    {
+      "id": "problem",
+      "duration": 4.32,
+      "voice": "Doing it by hand means mistakes, delays, and lost money.",
+      "tag": {
+        "icon": "!",
+        "text": "The problem"
+      },
+      "headline": [
+        "Manual loads",
+        "cost ~money~"
+      ],
+      "cards": [
+        {
+          "title": "Wrong amount",
+          "detail": "Loaded 100, not 10",
+          "amount": 90
+        },
+        {
+          "title": "Missed payment",
+          "detail": "Forgot to charge",
+          "amount": 50
+        },
+        {
+          "title": "Slow reply",
+          "detail": "Player left app",
+          "amount": 40
+        }
+      ],
+      "lost": "That's {total} gone every week",
+      "audio": "output/voice/problem-308668b859.mp3"
+    },
+    {
+      "id": "dashboard",
+      "duration": 10.48,
+      "voice": "Loadstar puts every game in one dashboard. Pick Alex, choose fifty credits, tap load. The wallet updates instantly, Alex gets paid in seconds.",
+      "tag": {
+        "icon": "★",
+        "text": "Dashboard"
+      },
+      "headline": [
+        "All your games.",
+        "*One* *dashboard.*"
+      ],
+      "wallet": 600,
+      "games": [
+        "Star Vault",
+        "Neon Drift",
+        "Lucky Peak"
+      ],
+      "players": [
+        {
+          "name": "Alex",
+          "game": "Star Vault",
+          "credits": 30
+        },
+        {
+          "name": "Maria",
+          "game": "Neon Drift",
+          "credits": 60
+        },
+        {
+          "name": "Jordan",
+          "game": "Lucky Peak",
+          "credits": 45
+        }
+      ],
+      "load": {
+        "credits": 50,
+        "price": 0.25
+      },
+      "audio": "output/voice/dashboard-e2a0176dab.mp3"
+    },
+    {
+      "id": "paylink",
+      "duration": 6.75,
+      "voice": "Need a quick payment? Send Maria a pay link. She pays, and her credits load automatically, no chasing.",
+      "tag": {
+        "icon": "⚡",
+        "text": "Pay links"
+      },
+      "headline": [
+        "They pay.",
+        "*Credits* *load.*"
+      ],
+      "player": "Maria",
+      "game": "Neon Drift",
+      "amount": 20,
+      "credits": 80,
+      "audio": "output/voice/paylink-07dc63b609.mp3"
+    },
+    {
+      "id": "results",
+      "duration": 3.76,
+      "voice": "More loads every day, zero extra work.",
+      "tag": {
+        "icon": "↑",
+        "text": "Results"
+      },
+      "headline": [
+        "More loads.",
+        "*Zero* *stress.*"
+      ],
+      "label": "Loads today",
+      "counter": {
+        "from": 15,
+        "to": 72
+      },
+      "bars": [
+        0.2,
+        0.35,
+        0.3,
+        0.55,
+        0.6,
+        1
+      ],
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Today"
+      ],
+      "audio": "output/voice/results-756c24ab8b.mp3"
+    },
+    {
+      "id": "end",
+      "duration": 4.72,
+      "voice": "Loadstar. Become an agent today at loadstar dot online.",
+      "tagline": "Run your own credit business",
+      "cta": "Become an agent →",
+      "audio": "output/voice/end-73611d5970.mp3"
+    }
+  ]
+}

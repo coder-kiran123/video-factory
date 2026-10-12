@@ -1,0 +1,19 @@
+{
+  "name": "video-factory",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "stills": "node render.js stills 3,9,14,25,32,38",
+    "video": "node render.js video output/video_silent.mp4 && node audio.js mix output/video_silent.mp4 output/video.mp4",
+    "make": "node make.js",
+    "voice": "node audio.js voice"
+  },
+  "dependencies": {
+    "@fontsource/figtree": "5.3.0",
+    "@fontsource/inter": "5.0.16",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "@fontsource/mukta": "5.0.8",
+    "@fontsource/unbounded": "5.3.0",
+    "playwright": "1.56.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Sajilo Store",
+  "initial": "S",
+  "template": "discount",
+  "language": "Nepali",
+  "rules": [
+    "Nepali text in Devanagari; common English shop words are fine.",
+    "Never mention any other company, brand, app or logo."
+  ]
+}

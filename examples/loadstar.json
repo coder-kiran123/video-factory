@@ -1,0 +1,79 @@
+{
+  "template": "loadstar",
+  "brand": {
+    "name": "Loadstar",
+    "website": "loadstar.online"
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "duration": 5,
+      "voice": "Still loading game credits by hand, one panel at a time?",
+      "tag": { "icon": "?", "text": "Agents" },
+      "headline": ["Still loading", "*credits* by hand?"],
+      "messages": [
+        { "name": "Mike", "text": "bro load 50 on my account" },
+        { "name": "Jess", "text": "still waiting 😩" },
+        { "name": "Tony", "text": "where are my credits??" }
+      ],
+      "badge": "🔔 14 unread"
+    },
+    {
+      "id": "problem",
+      "duration": 5,
+      "voice": "Wrong amounts, lost track, players waiting. Every mistake costs you money.",
+      "tag": { "icon": "!", "text": "The problem" },
+      "headline": ["Mistakes cost", "you ~money~"],
+      "cards": [
+        { "title": "Wrong amount", "detail": "Loaded 100 instead of 10", "amount": 90 },
+        { "title": "Lost track", "detail": "No record of who paid", "amount": 60 },
+        { "title": "Player left", "detail": "Waited 20 minutes", "amount": 40 }
+      ],
+      "lost": "That's {total} gone this week"
+    },
+    {
+      "id": "dashboard",
+      "duration": 10,
+      "voice": "With Loadstar, every game is in one dashboard. Pick a player, choose the amount, tap load. Done in seconds, paid straight from your wallet.",
+      "tag": { "icon": "★", "text": "Dashboard" },
+      "headline": ["All your games.", "*One* *dashboard.*"],
+      "wallet": 1240,
+      "games": ["Star Reef", "Neon Fish", "Lucky Lane"],
+      "players": [
+        { "name": "Mike", "game": "Star Reef", "credits": 20 },
+        { "name": "Jess", "game": "Neon Fish", "credits": 75 },
+        { "name": "Tony", "game": "Lucky Lane", "credits": 40 }
+      ],
+      "load": { "credits": 50, "price": 0.25 }
+    },
+    {
+      "id": "paylink",
+      "duration": 9,
+      "voice": "Send your player a pay link. They pay, and the credits load automatically. No chasing, no waiting.",
+      "tag": { "icon": "⚡", "text": "Pay links" },
+      "headline": ["They pay.", "*Credits* *load.*"],
+      "player": "Jess",
+      "game": "Neon Fish",
+      "amount": 20,
+      "credits": 80
+    },
+    {
+      "id": "results",
+      "duration": 5,
+      "voice": "More loads every day, and every dollar tracked.",
+      "tag": { "icon": "↑", "text": "Results" },
+      "headline": ["More loads.", "*Zero* *stress.*"],
+      "label": "Loads today",
+      "counter": { "from": 9, "to": 64 },
+      "bars": [0.3, 0.38, 0.34, 0.5, 0.46, 1],
+      "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Today"]
+    },
+    {
+      "id": "end",
+      "duration": 5,
+      "voice": "Loadstar. Become an agent today at loadstar dot online.",
+      "tagline": "Run your credit business from one place",
+      "cta": "Become an agent →"
+    }
+  ]
+}
